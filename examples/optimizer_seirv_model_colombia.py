@@ -8,6 +8,7 @@ from typing import Any, Dict
 
 import matplotlib.pyplot as plt
 import pandas as pd
+from pandas.errors import EmptyDataError
 
 from cmodel_examples_utilities import setup_csv
 
@@ -133,9 +134,13 @@ def optimizer_seirv_model_colombia_example(
             optimal_parameters_dict[param_names[i]] = param_opt_value
 
         # Add optimal parameters to the CSV file using pandas
-        df_optimization_log = pd.read_csv(
-            csv_file_path, index_col=csv_column_names[0]
-        )
+        try:
+            df_optimization_log = pd.read_csv(
+                csv_file_path, index_col=csv_column_names[0]
+            )
+        except (EmptyDataError, ValueError):
+            df_optimization_log = pd.DataFrame({csv_column_names[1]: [0.]})
+
         optimization_csv_row = {
             csv_column_names[1]: computation_time,
             csv_column_names[2]: minimization_algorithm,

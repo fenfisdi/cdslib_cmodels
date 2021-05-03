@@ -3,13 +3,17 @@
 /.pytest_cache
 *__pycache__/
 
+
 # /cmodel/
 /cmodel/_build_model.py
+
 
 # /examples/
 /examples/diff_evol_wrapper.py
 
+
 # /tests/
+
 
 # General
 *.pickle
@@ -17,6 +21,9 @@
 *.csv
 *experiment*
 *.pyc
+
+!*infected_reference_col.csv
+
 
 # MacOS files
 *.DS_store

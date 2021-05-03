@@ -36,7 +36,7 @@ class Parameter(Variable):
 
     @bounds.setter
     def bounds(self, bounds_input):
-        attr_err_message = "bounds must be a list of two increasing numbers."
+        attr_err_message = "bounds must be a list of non decreasing numbers."
         init_val_not_in_bounds_range = "initial_value must be in the range defined by bounds."
 
         type_check: bool = (

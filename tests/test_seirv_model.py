@@ -5,19 +5,15 @@ from pytest import approx
 import numpy as np
 
 from cmodel import model, predefined
+from examples.col_vars_params import (
+    seirv_state_variables_colombia_src,
+    seirv_parameters_colombia_src_ini
+)
 
 
 @pytest.fixture
 def state_variables_source():
-    state_variables_source = [
-        ("suceptible", "S", 50372424),
-        ("exposed", "Ex", 0),
-        ("infected", "If", 1),
-        ("recovered", "R", 0),
-        ("vaccinated", "V", 0),
-    ]
-
-    return state_variables_source
+    return seirv_state_variables_colombia_src
 
 
 @pytest.fixture
@@ -31,23 +27,7 @@ def state_variables(state_variables_source):
 
 @pytest.fixture
 def parameters_source():
-    parameters_source = [
-        ("Lambda", "Lambda", 2083.62),
-        ("mu", "mu", 0.0000150767),
-        ("alpha", "alpha", 0.172414),
-        ("omega", "omega", 0.0114),
-        ("gamma", "gamma", 0.0666667),
-        ("xi1", "xi1", 1.09736),
-        ("xi2", "xi2", 6.32609),
-        ("sigma", "sigma", 1.),
-        ("b1", "b1", 2.91823E-9),
-        ("b2", "b2", 2.67472E-9),
-        ("b3", "b3", 4.635E-9),
-        ("c1", "c1", 0.0000855641),
-        ("c2", "c2", 2.94906E-7),
-        ("c3", "c3", 0.159107),
-    ]
-    return parameters_source
+    return [param_info[:3] for param_info in seirv_parameters_colombia_src_ini]
 
 
 @pytest.fixture
